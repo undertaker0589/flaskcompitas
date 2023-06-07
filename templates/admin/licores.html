@@ -1,0 +1,87 @@
+{% include 'admin/cabecera.html' %}
+<br>
+<div class="container">
+   <div class="row">
+      <div class="col-md-5">
+         <div class="card">
+            <div class="card-header">
+               datos del producto
+            </div>
+            <div class="card-body">
+               <form action="/admin/licores/guardar" method="post" enctype="multipart/form-data">
+
+                  <div class="mb-3">
+                    <label for="txtnombre" class="form-label">nombre del producto</label>
+                    <input type="text"
+                      class="form-control" name="txtnombre" id="txtnombre" aria-describedby="helpId" placeholder="escriba el nombre del producto">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="txtimagen" class="form-label">imagen</label>
+                      <input type="file"
+                        class="form-control" name="txtimagen" id="txtimagen" aria-describedby="helpId" placeholder="seleccione la imagen">
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="txtdescarga" class="form-label">url descarga</label>
+                        <input type="text"
+                          class="form-control" name="txtdescarga" id="txtdescarga" aria-describedby="helpId" placeholder="escriba el link">
+                        </div>
+                        
+                       <button type="submit" class="btn btn-primary">agregar</button>
+                    
+
+
+
+               </form>
+
+            </div>
+            <div class="card-footer text-muted">
+               
+            </div>
+         </div>
+      </div>
+      <div class="col-md-7">
+         <div class="table-responsive">
+            <table class="table table-primary">
+               <thead>
+                  <tr>
+                     <th scope="col">ID</th>
+                     <th scope="col">NOMBRE</th>
+                     <th scope="col">IMAGEN</th>
+                     <th scope="col">URL</th>
+                     <th scope="col">ACCIONES</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for licor in licores %}
+                  <tr class="">
+                     <td scope="row">{{licor[0]}}</td>
+                     <td>{{licor[1]}}</td>
+                     <td>{{licor[2]}}</td>
+                     <td>{{licor[3]}}</td>
+                     <td>
+                        <form action="/admin/licores/borrar" method="post">
+                          <input value="{{licor[0]}}" type="text" name="txtID" id="txtID"> 
+                          <button type="submit" class="btn btn-danger">ELIMINAR</button>
+                        </form>
+                     </td>
+                  </tr>
+                 {% endfor %}
+                  
+               </tbody>
+            </table>
+         </div>
+         
+
+         
+               
+
+
+      </div>
+      
+   </div>
+</div>
+  
+
+   {% include 'admin/pie.html' %}  
